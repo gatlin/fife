@@ -1,0 +1,19 @@
+{
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-whitelist@1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.cambiocreative.cordova.plugin.zeroconf": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cambiocreative/cordova-plugin-zeroconf",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}

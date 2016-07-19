@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.cambiocreative.cordova.plugin.zeroconf"
+    version="1.0.9">
+    <name>Cordova ZeroConf Plugin</name>
+    <description>ZeroConf plugin for Cordova/Phonegap</description>
+    <author>Osmond van Hemert</author>
+    <keywords>cordova,plugin,network,zeroconf,service,discovery</keywords>
+    <license>MIT</license>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <js-module src="www/zeroconf.js" name="ZeroConf">
+        <clobbers target="cambiocreative.CDVZeroConfig" />
+    </js-module>
+
+    <platform name="android">
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+        </config-file>
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="ZeroConf">
+                <param name="android-package" value="com.cambiocreative.cordova.plugin.ZeroConf" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <framework src="javax.jmdns:jmdns:+"/>
+        <source-file src="src/android/libs/org.apache.http.legacy.jar" target-dir="libs" framework="true" />
+        <source-file src="src/android/ZeroConf.java" target-dir="src/com/cambiocreative/cordova/plugin" />
+    </platform>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="ZeroConf">
+                <param name="ios-package" value="ZeroConf"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <header-file src="src/ios/zeroconf.h" />
+        <source-file src="src/ios/zeroconf.m" />
+    </platform>
+
+    <info></info>
+</plugin>
